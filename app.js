@@ -2,12 +2,12 @@ if (process.env.NODE_ENV !== 'production') {
     const dotenv = require('dotenv');
     dotenv.config()
 }
-
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const app = express();
-const rootRouter = require('./routes');
 const createDbConnection = require('./model/db');
+const rootRouter = require('./routes');
+const authorRouter = require('./routes/authors');
 
 
 // Setting view configuration
@@ -18,6 +18,9 @@ app.set('layout', 'layouts/layout');
 // General app configuration
 app.use(expressLayouts);
 app.use(express.static('public'))
+app.use(express.urlencoded({
+    extended: false
+}))
 
 // connect db
 createDbConnection();
@@ -25,6 +28,7 @@ createDbConnection();
 
 // set up router
 app.use('/', rootRouter)
+app.use('/authors', authorRouter)
 
 
 
