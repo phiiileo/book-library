@@ -8,6 +8,7 @@ const app = express();
 const createDbConnection = require('./model/db');
 const rootRouter = require('./routes');
 const authorRouter = require('./routes/authors');
+const bookRouter = require('./routes/books');
 
 
 // Setting view configuration
@@ -29,6 +30,7 @@ createDbConnection();
 // set up router
 app.use('/', rootRouter)
 app.use('/authors', authorRouter)
+app.use('/books', bookRouter)
 
 
 
