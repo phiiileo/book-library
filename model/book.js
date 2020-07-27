@@ -2,7 +2,6 @@ const {
     Schema,
     model
 } = require('mongoose');
-const path = require('path');
 const bookBasePath = 'uploads/bookCover'
 bookSchema = new Schema({
     title: {
@@ -15,9 +14,13 @@ bookSchema = new Schema({
         required: true
 
     },
-    imageUrl: {
+    image: {
+        type: Buffer,
+        required: false
+    },
+    imageType: {
         type: String,
-        required: true
+        required: false
     },
     publish_at: {
         type: Date,
@@ -40,11 +43,14 @@ bookSchema = new Schema({
 
 })
 
+bookSchema.set('toObject', { virtuals: true })
+bookSchema.set('toJSON', { virtuals: true })
+
 bookSchema.virtual('coverImagePath').get(function () {
-    if (this.imageUrl !== null) {
-        return path.join('/', bookBasePath, this.imageUrl)
-    }
+    if(this.image != null)
+    return `data:${this.imageType};charset=utf-8;base64,${this.image.toString('base64')}`
 })
+
 
 Book = model('Books', bookSchema);
 
