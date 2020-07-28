@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
     }
     try {
         const books = await Book.find(searchOptions);
-
         res.render('books', {
             books,
             searchOptions: req.query
@@ -64,7 +63,72 @@ router.get('/new', async (req, res) => {
     renderNewBookPage(res, new Book())
 })
 
-const renderNewBookPage = async (res, book, error = false) => {
+// edit book details
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id)
+        renderNewBookPage(res, book, false, true)
+    } catch (err) {
+        const books = await Book.find(searchOptions);
+        res.redirect('/books', {
+            books,
+            searchOptions
+        })
+    }
+})
+
+// show book details
+router.get('/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id).populate({path:'author', model:"Authors"}).exec();
+        console.log(book)
+        res.render(`books/viewBook`, {
+            book
+        })
+    } catch (err) {
+        console.log(err)
+        res.redirect('/books')
+    }
+})
+
+// delete book details
+router.delete('/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (book) {
+            await book.remove()
+            redirect('/books')
+        } else {
+            throw "Book Not found!"
+        }
+    } catch (err) {
+        res.redirect('/books')
+    }
+})
+
+// show book details
+router.put('/:id', async (req, res) => {
+    try {
+        console.log(req.body)
+        const book = await Book.findById(req.params.id);
+
+        book.title = req.body.title
+        book.author = req.body.author
+        book.publish_at = req.body.publish_at
+        book.page_count = req.body.page_count
+        book.description = req.body.description;
+
+        await book.save()
+        res.redirect(`/books/${req.params.id}`)
+
+    } catch (err) {
+        console.log(err)
+        res.redirect(`/books/${req.params.id}/edit`)
+    }
+})
+
+// render new page for new page and error on creation of new book
+const renderNewBookPage = async (res, book, error = false, update = false) => {
     try {
         const authors = await Author.find({});
         const data = {
@@ -74,7 +138,11 @@ const renderNewBookPage = async (res, book, error = false) => {
         if (error) {
             data.errorMessage = "Error creating book!"
         }
-        res.render('books/new', data)
+        if (update) {
+            res.render('books/edit', data)
+        } else {
+            res.render('books/new', data)
+        }
 
     } catch (err) {
         console.log(err)
@@ -82,6 +150,7 @@ const renderNewBookPage = async (res, book, error = false) => {
     }
 }
 
+// Save book cover
 const saveCover = (book, coverEncoded) => {
     if (coverEncoded == null) return;
     const cover = JSON.parse(coverEncoded);

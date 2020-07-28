@@ -22,10 +22,10 @@
 <div>
     <span>
         <label for="image">Cover</label>
-        <input type="file" name="cover" class="filepond">
+        <input type="file" name="cover" value="<%= book.coverImagePath%>" class="filepond">
     </span>
     <span>
         <label for="description">Description</label>
-        <textarea name="description" id="" cols="30" rows="3"></textarea>
+        <textarea name="description" id="" cols="30" rows="3" required></textarea>
     </span>
 </div>
