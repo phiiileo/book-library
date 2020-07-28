@@ -13,18 +13,17 @@
     </div>
 </form>
 
+
 <% authors.map(author => { %>
-
-<p>Name: <%= author.name %> || Email:<%= author.email %> </p>
-
-<div class="btn-row">
-    <a class="btn btn-primary" href="/authors/<%= author._id%>">View</a>
-    <a class="btn btn-primary" href="/authors/<%= author._id%>/edit">Edit</a>
-
-    <%- include('../partials/deleteButton.ejs',{
+<div class="author-row">
+    <p class="author-name">Name: <%= author.name %> || Email:<%= author.email %> </p>
+    <div class="btn-row">
+        <a class="btn btn-primary" href="/authors/<%= author._id%>">View</a>
+        <a class="btn btn-primary" href="/authors/<%= author._id%>/edit">Edit</a>
+        <%- include('../partials/deleteButton.ejs',{
     action_url:`/authors/${author._id}`
 }) %>
-
+    </div>
 </div>
 
 <%}) %>

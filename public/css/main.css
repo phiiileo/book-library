@@ -2,6 +2,8 @@
 @import './fragments/buttons.css';
 @import './fragments/header.css';
 @import './fragments/form.css';
+@import './fragments/author.css';
+@import './fragments/books.css';
 
 
 :root {
@@ -37,4 +39,9 @@ body {
 .page-header {
     font-weight: var(--page-title-font-weight);
     font-size: var(--page-title-font-size);
+    text-transform: capitalize;
+}
+
+.error {
+    color: var(--color-danger-hue, 100%, 50%)
 }

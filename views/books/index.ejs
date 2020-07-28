@@ -26,20 +26,5 @@
 </div>
 
 <div>
-    <% books.map(book => { %>
-    <article>
-        <h5><%= book.title.toUpperCase() %></h5>
-        <img src="<%= book.coverImagePath %>" style="object-fit: cover;" height="250px
-        " width="250px" alt="book image">
-
-        <div class="btn-row">
-            <a class="btn btn-primary" href="/books/<%= book.id %>">View Book</a>
-            <a class="btn btn-primary" href="/books/<%= book.id %>/edit">Edit Book</a>
-            <%- include('../partials/deleteButton.ejs',{
-                action_url:`/books/${book.id}`
-            }) %>
-        </div>
-
-    </article>
-    <%})%>
+    <%- include('../partials/bookGrid.ejs') %>
 </div>
