@@ -1,6 +1,7 @@
 @import './fragments/variables.css';
 @import './fragments/buttons.css';
 @import './fragments/header.css';
+@import './fragments/form.css';
 
 
 :root {
@@ -21,6 +22,7 @@ a {
 
 body {
     background: linear-gradient(to right, var(--bg-color-dark), var(--bg-color-light));
+    margin-bottom: 5rem;
 }
 
 .main-container {

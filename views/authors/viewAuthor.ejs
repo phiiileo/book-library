@@ -1,14 +1,16 @@
-<h3 class="page-header">Author Profile</h3>
+<h3 class="page-header"><%= author.name %></h3>
 
 <div>
-    <h4>Books by <%= author.name %></h4>
-    <div>
-        <a href="/authors/<%= author.id %>/edit">Edit</a>
+    <div class="btn-row">
+        <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
         <%- include('../partials/deleteButton.ejs',{
             action_url:`/authors/${author._id}`
         }) %>
     </div>
+
+
     <div>
+        <h4 class="page-header">Books by <%= author.name %></h4>
         <ul>
             <% books.map(book => {%>
             <li>Title: <%= book.title%></p>
