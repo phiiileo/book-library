@@ -39,7 +39,6 @@ router.get('/', async (req, res) => {
 // Add a new author
 router.post('/', async (req, res) => {
     // const fileName = req.file !== null ? req.file.filename : null
-    console.log(req.body)
     const book = new Book({
         title: req.body.title,
         description: req.body.description,
@@ -109,7 +108,6 @@ router.delete('/:id', async (req, res) => {
 // show book details
 router.put('/:id', async (req, res) => {
     try {
-        console.log(req.body)
         const book = await Book.findById(req.params.id);
 
         book.title = req.body.title
