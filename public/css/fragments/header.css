@@ -1,0 +1,25 @@
+:root {
+    --header-title-font: 3rem;
+    --header-title-fw: bold;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.header-title {
+    color: var(--color-light);
+    font-size: var(--header-title-font);
+    font-weight: var(--header-title-fw);
+}
+
+.header-nav ul a {
+    color: var(--color-light);
+    font-weight: var(--font-weight-light);
+    padding: 1rem;
+}

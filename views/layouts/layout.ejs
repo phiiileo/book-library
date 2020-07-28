@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet">
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
     <script defer src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
@@ -16,9 +18,13 @@
 </head>
 
 <body>
-    <%- include('../partials/header') %>
-    <%- include('../partials/errorMessage') %>
-    <%- body %>
+    <div class="main-container">
+        <%- include('../partials/header') %>
+        <div class="inner-container">
+            <%- include('../partials/errorMessage') %>
+            <%- body %>
+        </div>
+    </div>
 </body>
 
 </html>

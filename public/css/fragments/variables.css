@@ -1,0 +1,11 @@
+:root {
+    --color-base-hue: 200;
+    --color-base-hue-offset: 180;
+    --color-danger-hue: calc(var(--color-base-hue) - var(--color-base-hue-offset));
+    --bg-color-dark: hsl(var(--color-base-hue), 100%, 8%);
+    --bg-color-light: hsl(var(--color-base-hue), 100%, 16%);
+    --text-light: hsl(var(--color-base-hue), 100%, 90%);
+    --font-weight-light: 300;
+    --page-title-font-size: 2rem;
+    --page-title-font-wieight: 500;
+}

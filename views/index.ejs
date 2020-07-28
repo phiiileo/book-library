@@ -1,16 +1,16 @@
 <body>
     <div>
-        <h1>Authors</h1>
+        <h1 class="page-header">Recently Added Authors</h1>
         <% authors.map(author =>{%>
         <p><%= author.name %></p>
-    <% }) %>
+        <% }) %>
     </div>
 
     <div>
-        <h1>Books</h1>
+        <h2 class="page-header"> Recently Added Books</h2>
         <% books.map(book =>{ %>
         <p><%= book.title %></p>
         <img src="<%= book.coverImagePath %>" style="object-fit: cover;" width="300px" height="300px" alt="">
-    <% }) %>
+        <% }) %>
     </div>
 </body>
