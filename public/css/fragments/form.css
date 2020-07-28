@@ -68,15 +68,15 @@
 
 .filepond--root {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .filepond--panel-root {
-    background-color: var(--form-input-bg-color);
+    background-color: var(--form-input-bg-color) !important;
     border: 1px solid var(--form-input-border);
 
 }
-.filepond--rop-label{
+.filepond--drop-label label{
     color: var(--text-light);
     font-size: inherit;
 }

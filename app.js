@@ -20,7 +20,8 @@ app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
 app.use(express.static('public'))
 app.use(express.urlencoded({
-    extended: false
+    extended: false,
+    limit: '50mb'
 }))
 app.use(methodOverride('_method'))
 

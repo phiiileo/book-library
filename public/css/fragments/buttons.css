@@ -55,3 +55,18 @@
 .btn-danger:hover {
     background-color: var(--btn-danger-bg-color-dark);
 }
+
+.btn-book-actions {
+    display: grid;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    grid-template-areas: 'edit delete' 'author author';
+    gap: .5rem;
+    margin-top: .5rem;
+}
+
+.view-author-btn {
+    grid-area: author;
+    justify-self: stretch;
+}

@@ -1,20 +1,21 @@
 <h3 class="page-header">Book Details</h3>
+<h4><%= book.title %></h4>
 
-<div>
-    <h4><%= book.title %></h4>
-    <div>
-        <img src="<%= book.coverImagePath %>" style="object-fit: cover;" height="250px" width="250px" alt="book image">
+<div class="book-panels">
+    <div class="book-details-panel-1">
+        <span >
+            <img class="book-cover" src="<%= book.coverImagePath %>" alt="book image">
+        </span>
 
-        <div class="btn-row">
+        <div class="btn-book-actions">
             <a class="btn btn-primary" href="/books/<%= book.id %>/edit">Edit Book</a>
             <%- include('../partials/deleteButton.ejs',{
             action_url:`/books/${book.id}`
         }) %>
-            <a class="btn btn-primary" href="/authors/<%= book.author.id%>">View Author</a>
+            <a class="btn btn-primary view-author-btn" href="/authors/<%= book.author.id%>">View Author</a>
         </div>
-
     </div>
-    <div>
+    <div class="book-details-panel-2">
         <p>
             <strong>Author: </strong>
             <span><%= book.author.name %></span>

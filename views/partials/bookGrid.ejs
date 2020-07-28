@@ -4,10 +4,12 @@
 
 <div class=" book-grid <%=bookGridSize %>">
     <% books.map(book => {%>
-    <div class="book-cover <%=bookCoverSize %>">
+    <div >
         <p><%=book.title %></p>
         <p><%=book.publish_at.toDateString() %></p>
-        <img src="<%= book.coverImagePath %>" style="object-fit: cover;" height="250px" width="250px" alt="book image">
+        <a href="/books/<%=book.id%>">
+            <img class="book-cover <%=bookCoverSize %>" src="<%= book.coverImagePath %>" style="object-fit: cover;" height="250px" width="250px"
+                alt="book image"></a>
     </div>
     <%})%>
 </div>
