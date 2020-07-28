@@ -4,7 +4,7 @@ if (rootStyles.getPropertyValue('--book-cover-width-large') != null && rootStyle
     ready()
 } else {
     document.getElementById('main-css').addEventListener('load', () => {
-        ready
+        ready()
     })
 }
 
