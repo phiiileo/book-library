@@ -47,8 +47,21 @@ router.get('/new', (req, res) => {
 })
 
 // Get an Authir details 
-router.get('/:id', (req, res) => {
-    res.send("Show author with id -" + req.params.id)
+router.get('/:id', async (req, res) => {
+
+    try {
+        const author = await Author.findById(req.params.id);
+        const books = await Book.find({
+            author: author._id
+        })
+        res.render('authors/viewAuthor', {
+            author,
+            books
+        })
+    } catch (err) {
+        console.log(err)
+        res.redirect('/authors')
+    }
 })
 
 // Edit Author Page
@@ -59,7 +72,7 @@ router.get('/:id/edit', async (req, res) => {
             author
         })
     } catch (err) {
-        res.redirect('/authors')
+        res.redirect('')
     }
 
 })

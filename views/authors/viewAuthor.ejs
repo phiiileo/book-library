@@ -1,0 +1,22 @@
+<h3>Author Profile</h3>
+
+<div>
+    <h4>Books by <%= author.name %></h4>
+    <div>
+        <a href="/authors/<%= author.id %>/edit">Edit</a>
+        <%- include('../partials/deleteButton.ejs',{
+            action_url:`/authors/${author._id}`
+        }) %>
+    </div>
+    <div>
+        <ul>
+            <% books.map(book => {%>
+            <li>Title: <%= book.title%></p>
+                <img src="<%= book.coverImagePath %>" style="object-fit: cover;" height="250px" width="250px"
+                    alt="book image">
+                Published on : <%= book.publish_at%></p>
+            </li>
+            <%})%>
+        </ul>
+    </div>
+</div>
