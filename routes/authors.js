@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         console.log(authors)
         res.render('authors', {
             authors,
-            searchOptions: req.query
+            searchOptions: req.query,
         })
     } catch (err) {
         res.redirect('/')
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
         console.log(new Error(err).message)
         res.render('authors/new', {
             author: author,
-            errorMessage: "Creating user not successful"
+            errorMessage: "Creating user not successful",
         })
     }
 })
@@ -46,5 +46,50 @@ router.get('/new', (req, res) => {
     })
 })
 
+// Get an Authir details 
+router.get('/:id', (req, res) => {
+    res.send("Show author with id -" + req.params.id)
+})
+
+// Edit Author Page
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id)
+        res.render('authors/edit', {
+            author
+        })
+    } catch (err) {
+        res.redirect('/authors')
+    }
+
+})
+
+// Update Author Page
+router.put('/:id', async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id);
+        author.name = req.body.name;
+        author.email = req.body.email;
+        await author.save()
+        res.redirect(`/authors/${req.params.id}`)
+
+    } catch (err) {
+        console.log(err)
+        res.redirect(`/${req.params.id}/edit`)
+    }
+})
+
+// Delete Author Page
+router.delete('/:id', async (req, res) => {
+    try {
+        const author = await Author.findById(req.params.id);
+        await author.remove()
+        res.redirect(`/authors`)
+
+    } catch (err) {
+        console.log(err)
+        res.redirect(`/authors`)
+    }
+})
 
 module.exports = router

@@ -8,5 +8,14 @@
 </form>
 
 <% authors.map(author => { %>
+    
 <p>Name: <%= author.name %> || Email:<%= author.email %> </p>
+
+<a href="/authors/<%= author._id%>">View</a>
+<a href="/authors/<%= author._id%>/edit">Edit</a>
+
+<%- include('../partials/deleteButton.ejs',{
+    action_url:`/authors/${author._id}`
+}) %>
+
 <%}) %>

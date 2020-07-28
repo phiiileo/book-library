@@ -9,7 +9,7 @@ const createDbConnection = require('./model/db');
 const rootRouter = require('./routes');
 const authorRouter = require('./routes/authors');
 const bookRouter = require('./routes/books');
-
+const methodOverride = require('method-override')
 
 // Setting view configuration
 app.set('view engine', 'ejs');
@@ -22,6 +22,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({
     extended: false
 }))
+app.use(methodOverride('_method'))
+
 
 // connect db
 createDbConnection();
